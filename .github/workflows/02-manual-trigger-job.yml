@@ -28,7 +28,7 @@ jobs:
           az ml job create --name "train-diabetes-model" \
           --resource-group convert_notebook_to_production_code \
           --workspace-name exercise_0 \
-          --file my-new-repo/experimentation/my-new-repo/src/job.yml
+          --file my-new-repo/src/job.yml
 
 
 
