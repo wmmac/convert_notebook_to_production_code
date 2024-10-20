@@ -8,20 +8,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repo
-      uses: actions/checkout@main
+      uses: actions/checkout@v3
+
     - name: Install az ml extension
-      run: az extension add -n ml -y
+      run: |
+        az extension add -n ml -y
+
     - name: Azure login
       uses: azure/login@v1
       with:
-        creds: ${{secrets.AZURE_CREDENTIALS}}
-    - name: Set Azure subscription
-      run: az account set --subscription "a1d3d9ba-3692-406e-b123-aad9ee4906ab/resourceGroups/convert_notebook_to_production_code"
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-     name: Trigger Azure ML job
-        run: |
-          az ml job create --name "train-diabetes-model" \
-            --resource-group convert_notebook_to_production_code \
-            --workspace-name exercise_0 \
-            ----file experimentation/my-new-repo/src/job.yml
+    - name: Set Azure subscription
+      run: |
+        az account set --subscription "a1d3d9ba-3692-406e-b123-aad9ee4906ab"
+
+    - name: Trigger Azure ML job
+      run: |
+        az ml job create --name "train-diabetes-model" \
+        --resource-group convert_notebook_to_production_code \
+        --workspace-name exercise_0 \
+        --file experimentation/my-new-repo/src/job.yml
+
 
