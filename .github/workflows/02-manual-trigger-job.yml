@@ -10,6 +10,10 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v3
 
+      - name: Debug - List files in repo
+        run: |
+          ls -R
+
       - name: Install az ml extension
         run: |
           az extension add -n ml -y
@@ -28,7 +32,8 @@ jobs:
           az ml job create --name "train-diabetes-model" \
           --resource-group convert_notebook_to_production_code \
           --workspace-name exercise_0 \
-          --file my-new-repo/src/job.yml
+          --file ./my-new-repo/src/job.yml
+
 
 
 
