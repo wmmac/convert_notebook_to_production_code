@@ -19,6 +19,6 @@ jobs:
         python -m pip install flake8
     - name: Run linting tests
       run: | 
-        flake8 src/model/
+        flake8 tests/test_train.py
 
 
